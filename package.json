@@ -1,0 +1,16 @@
+{
+  "name": "my-aquarium",
+  "version": "1.0.0",
+  "description": "My aquarium",
+  "main": "index.html",
+  "author": "jiji",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
