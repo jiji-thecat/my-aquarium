@@ -1,3 +1,16 @@
+body {
+  display: flex; /* If you want to use flex-direction you need display: flex */
+  flex-direction: row;
+}
+
 #canvas {
   background-color: skyblue;
+}
+
+.search-box {
+  flex: 1;
+  background-color: red;
+}
+
+iframe {
 }
