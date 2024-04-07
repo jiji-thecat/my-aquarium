@@ -1,4 +1,4 @@
-import Fish from './fish.js';
+import Fish from './fish';
 const fps = 30;
 const fish = [];
 const init = () => {
