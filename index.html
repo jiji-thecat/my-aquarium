@@ -6,12 +6,13 @@
 
   <body>
     <canvas id="canvas" width="500" height="500"></canvas>
-    <div class="search-box">
-      <iframe src="https://en.wikipedia.org/wiki/Ocean_sunfish" width="500" height="500"></iframe>
+    <div class="box">
+      <input type="range" id="volume" name="volume" min="0" max="50" />
+      <label for="volume">Volume</label>
     </div>
     <!--Call the script tag after canvas declaration-->
-    <script type="module" src="./bin/fish.js"></script>
-    <script type="module" src="./bin/canvas.js"></script>
+    <script type="module" src="./src/fish.ts"></script>
+    <script type="module" src="./src/index.ts"></script>
     <link rel="stylesheet" href="./src/styles.css" type="text/css" />
   </body>
 </html>

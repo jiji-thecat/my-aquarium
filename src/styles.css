@@ -7,10 +7,7 @@ body {
   background-color: skyblue;
 }
 
-.search-box {
+.box {
   flex: 1;
   background-color: red;
-}
-
-iframe {
 }
