@@ -8,7 +8,7 @@ export default class Fish {
   private _isRight: boolean;
   private _count: number;
 
-  constructor(src: string, width: number, height: number) {
+  constructor(src: string, width: number, height: number, cWidth: number, cHeight: number) {
     this._image = new Image();
     this._image.src = `./assets/${src}.png`;
 
@@ -16,7 +16,7 @@ export default class Fish {
     this._height = height;
     this._x = 0;
     this._y = 0;
-    this._random = Math.random() * 200;
+    this._random = Math.random() * cHeight;
     this._isRight = true;
     this._count = 0;
   }

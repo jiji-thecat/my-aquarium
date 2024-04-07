@@ -1,34 +1,14 @@
 import Fish from './fish';
 
-// sin wave
 const fps = 30;
-const assets = [
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-  'redfish',
-  'redfish',
-  'tuna',
-];
 const fish: Fish[] = [];
 
 const init = () => {
-  assets.forEach((value) => {
-    fish.push(new Fish(value, 50, 50));
-  });
+  const fileNumber = 11;
+
+  for (let i = 1; i <= fileNumber; i++) {
+    fish.push(new Fish(`f-${i}`, 50, 50, canvas.width, canvas.height));
+  }
 
   animation();
 };
