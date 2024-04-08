@@ -1,13 +1,22 @@
 body {
-  display: flex; /* If you want to use flex-direction you need display: flex */
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #canvas {
   background-color: skyblue;
+  border: 5px solid black;
 }
 
 .box {
-  flex: 1;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+}
+
+#volume {
+  margin-left: 10px;
 }

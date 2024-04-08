@@ -28,7 +28,8 @@ class Main {
     const value = Number(event.target.value);
     if (value > this._volume) {
       for (let i = this._volume; i < value; i++) {
-        this._fish.push(new Fish(`f-${i}`, 50, 50, this._canvas.width, this._canvas.height));
+        const iNormalize = i % 11;
+        this._fish.push(new Fish(`f-${iNormalize}`, 50, 50, this._canvas.width, this._canvas.height));
       }
     } else if (value < this._volume) {
       for (let i = this._volume; i > value; i--) {
