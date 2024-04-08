@@ -1,5 +1,20 @@
 import Living from './living';
 
+const fList = [
+  { id: 'f-0', name: 'Hadal snailfish' },
+  { id: 'f-1', name: 'Perca fluviatilis' },
+  { id: 'f-2', name: 'Tuna' },
+  { id: 'f-3', name: 'Brownbanded bamboo shark' },
+  { id: 'f-4', name: 'Convict fish' },
+  { id: 'f-5', name: 'Splendid alfonsino' },
+  { id: 'f-6', name: 'Leafy seadragon' },
+  { id: 'f-7', name: 'Sun fish' },
+  { id: 'f-8', name: 'Squid' },
+  { id: 'f-9', name: 'Sand tiger shark' },
+  { id: 'f-10', name: 'Japanese smelt' },
+  { id: 'f-11', name: 'Porcupinefish' },
+];
+
 class Main {
   private _fps = 30;
   private _fileNumber = 12;
@@ -26,6 +41,8 @@ class Main {
 
     const element = <HTMLInputElement>document.getElementById('volume');
     element.addEventListener('input', this.inputChange);
+
+    this.renderFishInfo();
   }
 
   inputChange = (event: Event) => {
@@ -47,7 +64,34 @@ class Main {
       }
     }
 
+    const fNumber = <HTMLElement>document.getElementById('f-number');
+    fNumber.innerHTML = value + '';
+
+    this.renderFishInfo();
     this._volume = value;
+  };
+
+  renderFishInfo = () => {
+    const list: number[] = new Array(this._fileNumber);
+    list.fill(0);
+
+    this._fish.forEach((f) => {
+      const number = Number(f.name.replace(/[^0-9]/g, ''));
+      list[number] = list[number] + 1;
+    });
+
+    const ul = <HTMLElement>document.getElementById('f-ul');
+    ul.innerHTML = '';
+
+    let i = 0;
+    for (const l of list) {
+      if (l === 0) {
+        continue;
+      }
+
+      ul.innerHTML += `<li id={li-${i}}>${fList[i].name}: ${l}</li>`;
+      i++;
+    }
   };
 
   render = () => {

@@ -1,4 +1,5 @@
 export default class Living {
+  private _name: string;
   private _image: HTMLImageElement;
   private _width: number;
   private _height: number;
@@ -9,6 +10,7 @@ export default class Living {
   private _count: number;
 
   constructor(src: string, width: number, height: number) {
+    this._name = src;
     this._image = new Image();
     this._image.src = `./assets/${src}.png`;
 
@@ -51,6 +53,10 @@ export default class Living {
 
   get count(): number {
     return this._count;
+  }
+
+  get name(): string {
+    return this._name;
   }
 
   set x(x: number) {
