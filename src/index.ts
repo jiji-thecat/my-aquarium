@@ -1,9 +1,11 @@
 import Fish from './fish';
+import Grass from './grass';
 
 class Main {
   private _fps = 30;
   private _fileNumber = 11;
   private _fish: Fish[] = [];
+  private _grass: Grass[] = [];
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
   private _volume = 3;
@@ -11,9 +13,16 @@ class Main {
   constructor() {
     this._canvas = <HTMLCanvasElement>document.getElementById('canvas'); // cast
     this._ctx = <CanvasRenderingContext2D>this._canvas.getContext('2d');
+    this._ctx.globalCompositeOperation = 'destination-over';
 
     for (let i = 0; i < this._volume; i++) {
       this._fish.push(new Fish(`f-${i}`, 50, 50, this._canvas.width, this._canvas.height));
+    }
+
+    for (let i = 0; i < 100; i++) {
+      const iNormlize = i % 2;
+      const randomSize = Math.random() * 100;
+      this._grass.push(new Grass(`g-${iNormlize}`, randomSize, randomSize, this._canvas.width, this._canvas.height));
     }
 
     const element = <HTMLInputElement>document.getElementById('volume');
@@ -29,7 +38,9 @@ class Main {
     if (value > this._volume) {
       for (let i = this._volume; i < value; i++) {
         const iNormalize = i % 11;
-        this._fish.push(new Fish(`f-${iNormalize}`, 50, 50, this._canvas.width, this._canvas.height));
+        const randomSize = Math.random() * 100;
+
+        this._fish.push(new Fish(`f-${iNormalize}`, randomSize, randomSize, this._canvas.width, this._canvas.height));
       }
     } else if (value < this._volume) {
       for (let i = this._volume; i > value; i--) {
@@ -41,11 +52,14 @@ class Main {
   };
 
   render = () => {
-    this._ctx.globalCompositeOperation = 'destination-over';
-
     const animation = () => {
       setTimeout(() => {
         this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height); // clear canvas
+
+        this._grass.forEach((g) => {
+          const random = g.random;
+          this._ctx.drawImage(g.image, random, this._canvas.height - g.height, g.width, g.height);
+        });
 
         this._fish.forEach((f) => {
           const random = f.getRandomPosition();
@@ -77,7 +91,6 @@ class Main {
           this._ctx.drawImage(f.image, 0, 0, f.width, f.height);
           this._ctx.setTransform(1, 0, 0, 1, 0, 0);
         });
-
         requestAnimationFrame(animation);
       }, 1000 / this._fps);
     };
