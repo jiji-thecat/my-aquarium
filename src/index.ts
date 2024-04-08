@@ -6,15 +6,38 @@ class Main {
   private _fish: Fish[] = [];
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
+  private _volume = 3;
 
   constructor() {
     this._canvas = <HTMLCanvasElement>document.getElementById('canvas'); // cast
     this._ctx = <CanvasRenderingContext2D>this._canvas.getContext('2d');
 
-    for (let i = 1; i <= this._fileNumber; i++) {
+    for (let i = 0; i < this._volume; i++) {
       this._fish.push(new Fish(`f-${i}`, 50, 50, this._canvas.width, this._canvas.height));
     }
+
+    const element = <HTMLInputElement>document.getElementById('volume');
+    element.addEventListener('input', this.inputChange);
   }
+
+  inputChange = (event: Event) => {
+    if (!(event.target instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const value = Number(event.target.value);
+    if (value > this._volume) {
+      for (let i = this._volume; i < value; i++) {
+        this._fish.push(new Fish(`f-${i}`, 50, 50, this._canvas.width, this._canvas.height));
+      }
+    } else if (value < this._volume) {
+      for (let i = this._volume; i > value; i--) {
+        this._fish.pop();
+      }
+    }
+
+    this._volume = value;
+  };
 
   render = () => {
     this._ctx.globalCompositeOperation = 'destination-over';
