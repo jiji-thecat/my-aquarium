@@ -1,11 +1,10 @@
-import Fish from './fish';
-import Grass from './grass';
+import Living from './living';
 
 class Main {
   private _fps = 30;
-  private _fileNumber = 11;
-  private _fish: Fish[] = [];
-  private _grass: Grass[] = [];
+  private _fileNumber = 12;
+  private _fish: Living[] = [];
+  private _grass: Living[] = [];
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
   private _volume = 3;
@@ -16,13 +15,13 @@ class Main {
     this._ctx.globalCompositeOperation = 'destination-over';
 
     for (let i = 0; i < this._volume; i++) {
-      this._fish.push(new Fish(`f-${i}`, 50, 50, this._canvas.width, this._canvas.height));
+      this._fish.push(new Living(`f-${i}`, 50, 50));
     }
 
     for (let i = 0; i < 100; i++) {
       const iNormlize = i % 2;
       const randomSize = Math.random() * 100;
-      this._grass.push(new Grass(`g-${iNormlize}`, randomSize, randomSize, this._canvas.width, this._canvas.height));
+      this._grass.push(new Living(`g-${iNormlize}`, randomSize, randomSize));
     }
 
     const element = <HTMLInputElement>document.getElementById('volume');
@@ -37,10 +36,10 @@ class Main {
     const value = Number(event.target.value);
     if (value > this._volume) {
       for (let i = this._volume; i < value; i++) {
-        const iNormalize = i % 11;
+        const iNormalize = i % this._fileNumber;
         const randomSize = Math.random() * 100;
 
-        this._fish.push(new Fish(`f-${iNormalize}`, randomSize, randomSize, this._canvas.width, this._canvas.height));
+        this._fish.push(new Living(`f-${iNormalize}`, randomSize, randomSize));
       }
     } else if (value < this._volume) {
       for (let i = this._volume; i > value; i--) {
@@ -57,13 +56,14 @@ class Main {
         this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height); // clear canvas
 
         this._grass.forEach((g) => {
-          const random = g.random;
-          this._ctx.drawImage(g.image, random, this._canvas.height - g.height, g.width, g.height);
+          const randomX = g.random * this._canvas.width;
+          this._ctx.drawImage(g.image, randomX, this._canvas.height - g.height, g.width, g.height);
         });
 
         this._fish.forEach((f) => {
-          const random = f.getRandomPosition();
-          this._ctx.translate(0, f.random);
+          const randomY = f.random * this._canvas.height;
+          const random = randomY % 20;
+          this._ctx.translate(0, randomY);
 
           if (f.isRight && f.x < this._canvas.width) {
             const rad = ((f.count * Math.PI) / 180) * random;

@@ -1,4 +1,4 @@
-export default class Grass {
+export default class Living {
   private _image: HTMLImageElement;
   private _width: number;
   private _height: number;
@@ -8,7 +8,7 @@ export default class Grass {
   private _isRight: boolean;
   private _count: number;
 
-  constructor(src: string, width: number, height: number, cWidth: number, cHeight: number) {
+  constructor(src: string, width: number, height: number) {
     this._image = new Image();
     this._image.src = `./assets/${src}.png`;
 
@@ -16,7 +16,7 @@ export default class Grass {
     this._height = height;
     this._x = 0;
     this._y = 0;
-    this._random = Math.random() * cWidth;
+    this._random = Math.random();
     this._isRight = true;
     this._count = 0;
   }
@@ -67,9 +67,5 @@ export default class Grass {
 
   addCount = ({ isTrue }: { isTrue: boolean }) => {
     this._count += isTrue ? 1 : -1;
-  };
-
-  getRandomPosition = () => {
-    return this._random % 20;
   };
 }
