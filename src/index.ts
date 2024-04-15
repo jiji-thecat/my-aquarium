@@ -42,7 +42,7 @@ class Main {
     const element = <HTMLInputElement>document.getElementById('volume');
     element.addEventListener('input', this.inputChange);
 
-    this.renderFishInfo();
+    this.renderFish();
   }
 
   inputChange = (event: Event) => {
@@ -67,11 +67,11 @@ class Main {
     const fNumber = <HTMLElement>document.getElementById('f-number');
     fNumber.innerHTML = value + '';
 
-    this.renderFishInfo();
+    this.renderFish();
     this._volume = value;
   };
 
-  renderFishInfo = () => {
+  renderFish = () => {
     const list: number[] = new Array(this._fileNumber);
     list.fill(0);
 

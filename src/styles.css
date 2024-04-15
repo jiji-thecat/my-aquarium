@@ -17,6 +17,11 @@ body {
   margin: 3px;
 }
 
+.r-box {
+  display: flex;
+  flex: 1;
+}
+
 #volume {
   margin-left: 10px;
 }
@@ -24,4 +29,5 @@ body {
 #f-number {
   margin-left: 10px;
   margin-right: 10px;
+  font-weight: bold;
 }
