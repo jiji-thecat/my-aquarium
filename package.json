@@ -5,12 +5,23 @@
   "main": "index.html",
   "author": "jiji",
   "license": "MIT",
-  "devDependencies": {
-    "ts-node": "^10.9.2",
-    "vite": "^5.1.4"
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack serve"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^20.11.24",
-    "typescript": "^5.3.3"
+    "css-loader": "^7.1.1",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.1.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   }
 }
