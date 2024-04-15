@@ -175,10 +175,10 @@ class Main {
             }
             const fNumber = document.getElementById('f-number');
             fNumber.innerHTML = value + '';
-            this.renderFishInfo();
+            this.renderFish();
             this._volume = value;
         };
-        this.renderFishInfo = () => {
+        this.renderFish = () => {
             const list = new Array(this._fileNumber);
             list.fill(0);
             this._fish.forEach((f) => {
@@ -249,7 +249,7 @@ class Main {
         }
         const element = document.getElementById('volume');
         element.addEventListener('input', this.inputChange);
-        this.renderFishInfo();
+        this.renderFish();
     }
 }
 const main = new Main();
