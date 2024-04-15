@@ -1,6 +1,7 @@
 const path = require('node:path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -10,7 +11,7 @@ module.exports = {
       directory: './dist',
     },
   },
-  entry: './src/index.ts',
+  entry: ['./src/index.ts', './src/styles.css'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -41,6 +42,9 @@ module.exports = {
       template: './index.html',
       inject: 'body',
       scriptLoading: 'defer',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'assets', to: 'assets' }],
     }),
   ],
 };

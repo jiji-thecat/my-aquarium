@@ -1,5 +1,4 @@
 import Living from './living';
-import './styles.css';
 
 const fList = [
   { id: 'f-0', name: 'Hadal snailfish' },
